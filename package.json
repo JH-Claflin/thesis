@@ -1,5 +1,5 @@
 {
-  "name": "test-msipp-form",
+  "name": "msipp-form",
   "version": "1.0.0",
   "description": "Project for MSIPP",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "pg": "^8.11.1"

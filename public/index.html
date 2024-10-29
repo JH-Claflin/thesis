@@ -7,14 +7,33 @@
         <title>MSIPP Form</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="stylesheet" href="./styles.css">
-        <script src="./script.js" type="module" defer></script>
+        <script defer src="./script.js" type="module" defer></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous" defer></script>
 </head>
 <body>
-    <div class="page-title">
-        <h1 class="text-center">Minority Support Institution Partner Program Form</h1>
-        <p class="text-center">Finding and connecting with our <a class="link-opacity-50-hover " href="https://www.linkedin.com/showcase/doe-em-msipp-alumni/" target="_blank">MSIPP Alumni</a></p>
-    </div>
-    <div class="container p-5">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">MSIPP Form</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container p-5">
+        <div class="page-title">
+            <h1 class="text-center">Minority Support Institution Partner Program Form</h1>
+            <p class="text-center">Finding and connecting with our <a class="link-opacity-50-hover " href="https://www.linkedin.com/showcase/doe-em-msipp-alumni/" target="_blank">MSIPP Alumni</a></p>
+        </div>
         <main>
             <form>
                 <section>
@@ -61,7 +80,12 @@
                     <!-- Institution Name -->
                     <div class="input-group mb-3">
                         <span class="input-group-text">Institution Name</span>
-                        <input type="text" class="form-control" aria-label="Institution Name?" aria-describedby="inputGroup-sizing-default" placeholder="What is your institution?" name="institution" id="institution" autocapitalize="on">
+                        <input list="insName" type="text" class="form-control" aria-label="Institution Name?" aria-describedby="inputGroup-sizing-default" placeholder="What is your institution?" name="institution" id="institution" autocapitalize="on">
+                            <datalist class="" id="insName">
+                                <!-- Options from database will be listed here -->
+                                <option value="Test value"></option>
+                                <option value="Test Value 2"></option>
+                            </datalist>
                       </div>
     
                     <!-- Institution State and Zip -->
@@ -101,16 +125,20 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" >Principle Investigator</span>
                         <input type="text" class="form-control" aria-label="What's the name of your principle investigator?" aria-describedby="inputGroup-sizing-default" name="prinInvest" id="prinInvest" placeholder="Who is your principle investigator?" autocapitalize="words">
+                        <p class="text-primary">This field is required</p>
                       </div>
     
                 </section>
-    
+     
                 <section>
                     <h3 class="text-left my-lg-4">MSIPP Information</h3>
                     <!-- MSIPP Program -->
                     <div class="input-group mb-3">
                         <span class="input-group-text">MSIPP Program</span>
-                        <input type="text" class="form-control" aria-label="What is your MSIPP Program?" aria-describedby="inputGroup-sizing-default" name="msipp" id="msipp" placeholder="What was your MSIPP Program?" autocapitalize="on">
+                        <!-- <input type="text" class="form-control" aria-label="What is your MSIPP Program?" aria-describedby="inputGroup-sizing-default" name="msipp" id="msipp" placeholder="What was your MSIPP Program?" autocapitalize="on"> -->
+                        <select class="form-select" aria-label="What is your MSIPP Program?" name="msipp" id="msipp">
+                            <option selected value="">What is your MSIPP Program?</option>
+                        </select>
                         <input type="number" class="form-control" aria-label="What is your MSIPP Program?" aria-describedby="inputGroup-sizing-default" name="msippYear" id="msippYear" placeholder="What year did you participation?" min="1900" maxlength="4">
                       </div>
                     
@@ -131,7 +159,7 @@
     </div>
     
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous" defer></script>
+    
     
 </body>
 </html>
