@@ -68,7 +68,7 @@ export const STATES = [
  * List of National Labratories part of the MSIPP Partners
  */
 
-export const NATIONALLABS = [
+export const NATIONAL_LABS = [
     {name: 'Argonne National Laboratory', abbreviation: 'ANL'},
     {name: 'Brookhaven National Laboratory', abbreviation: 'BNL'},
     {name: 'Idaho National Laboratory', abbreviation: 'INL'},
@@ -98,4 +98,17 @@ export const MSI_CATEGORIES = [
     {name: 'Predominantly Black Institutions', abbreviation: 'PBI'},
     {name: 'Tribal Colleges and Universities', abbreviation: 'TCU'}
 ];
+
+/**
+ * List of MSIPP Programs
+ */
+
+export const MSIPP_PROGRAMS = [
+    {name: 'Internship'},
+    {name: 'Graduate Fellowship'},
+    {name: 'Field Station'},
+    {name: 'Grants'},
+    {name: 'Competitive Research Award'},
+    {name: 'Postdoctoral Research'},
+]
 

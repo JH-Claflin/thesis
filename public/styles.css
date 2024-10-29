@@ -2,7 +2,7 @@
 
 
 html {
-    padding: 20em 5em 10em;
+    /* top: auto; */
     box-sizing: border-box;
 }
 
@@ -13,17 +13,35 @@ html {
 
 
 body {
-    display: grid;
     margin: 0;
-    place-content: center;
     height: 100vh;
-    overflow: visible;
+    width: 100%;
+    /* overflow: visible; */
 }
 
 main {
+    display: grid;
+    /* margin: auto; */
+    place-content: center;
     min-width: 500px;
     /* max-width: 60%; */
 
 }
 
+datalist {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+}
+  
+datalist > option {
+    font-size: 16px;
+    color: black;
+    background-color: white;
+}
+
+datalist > option:hover {
+    background-color: #f0f0f0;
+}
 
