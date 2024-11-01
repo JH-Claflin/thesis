@@ -1,31 +1,32 @@
 import { STATES, NATIONAL_LABS, MSI_CATEGORIES, MSIPP_PROGRAMS } from "./constants.js";
 
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    let institutions = document.getElementById('institution');
-    let majors = document.getElementById('major');
 
-    const baseUrl = 'http://localhost:3000/getinfo' //!Change according to host
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     let institutions = document.getElementById('institution');
+//     let majors = document.getElementById('major');
 
-    if(institutions && major) { 
-        //Make sure that the elements have loaded, prevents errors
+//     const baseUrl = 'http://localhost:3000/getinfo' //!Change according to host
 
-        const getInfo = async () => {
-            const res = await fetch(baseUrl, {
-                method: 'GET'
-            })
+//     if(institutions && majors) { 
+//         //Make sure that the elements have loaded, prevents errors
 
-            const data = await res.json()
-            institutionSearch = Object.values(data.institutionOptions);
-            majorSearch = Object.values(data.majorOptions);
+//         const getInfo = async () => {
+//             const res = await fetch(baseUrl, {
+//                 method: 'GET'
+//             })
 
-            dataListOptions(institutionSearch, "insNames");
-            dataListOptions(majorSearch, "majorList");
-        }
+//             const data = await res.json()
+//             institutionSearch = Object.values(data.institutionOptions);
+//             majorSearch = Object.values(data.majorOptions);
 
-        getInfo();
-    }
-})
+//             dataListOptions(institutionSearch, "insNames");
+//             dataListOptions(majorSearch, "majorList");
+//         }
+
+//         getInfo();
+//     }
+// })
 
 /**
  * 
@@ -86,32 +87,43 @@ selectOptions(MSIPP_PROGRAMS, "msipp");
  * Grabbing the HTML Form data and transfering to the backend to be processed in node js
  */
 
-const form = document.querySelector('form');
+const forms = document.querySelectorAll('.needs-validation')
 
 
-if (form) {
-    form.addEventListener('submit', (e) => {
-    e.preventDefault(); //Prevents HTML From Submitting the Form
+if (forms) {
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', e => {
+            if(!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+            } else {
+                e.preventDefault()
+                const formData = new FormData(form);
+                // console.log(formData);
+                
+                const urlEncoded = new URLSearchParams(formData).toString();
+                // console.log(urlEncoded)
 
-        const formData = new FormData(form);
-        //  console.log(formData);
-        const urlEncoded = new URLSearchParams(formData).toString();
-        // console.log(urlEncoded)
-    
-        //TODO: Add a validity checking for the year.
-        //! Change according to host
-        fetch('http://localhost:3000/submit', {
-            method: "POST", 
-            body: urlEncoded,
-            headers: {
-                'Content-type': 'application/x-www-form-urlencoded',
-    
+                fetch('/submit', {
+                    method: "POST", 
+                    body: urlEncoded,
+                    headers: {
+                        'Content-type': 'application/x-www-form-urlencoded',
+            
+                    }
+                })
+
+                window.location.assign('/success');
             }
-        })
-    
-        window.location.assign('/success'); //Redirects user to the thank you page
-    })
+            
+            form.classList.add('was-validated');
 
+            
+            
+        }, false)
+
+    });
 }
 
 

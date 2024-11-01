@@ -7,7 +7,7 @@
         <title>MSIPP Form</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="stylesheet" href="./styles.css">
-        <script defer src="./script.js" type="module" defer></script>
+        <script defer src="./script.js" type="module"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous" defer></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
             <p class="text-center">Finding and connecting with our <a class="link-opacity-50-hover " href="https://www.linkedin.com/showcase/doe-em-msipp-alumni/" target="_blank">MSIPP Alumni</a></p>
         </div>
         <main>
-            <form>
+            <form class="needs-validation" novalidate>
                 <section>
                     <h3 class="text-left my-lg-4">Personal Details</h3>
     
@@ -45,7 +45,10 @@
                             <!-- First Name -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text">First Name</span>
-                                <input type="text" class="form-control" aria-label="First name" aria-describedby="inputGroup-sizing-default" name="fName" id="fName" placeholder="Enter your first name..." autocomplete="given-name" autocapitalize="given-name">
+                                <input type="text" class="form-control" aria-label="First name" aria-describedby="inputGroup-sizing-default" name="fName" id="fName" placeholder="Enter your first name..." autocomplete="given-name" autocapitalize="given-name" required>
+                                <div class="valid-feedback">
+                                  Looks good!
+                                </div>
                               </div>
     
                         </div>
@@ -53,7 +56,10 @@
                             <!-- Last Name -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Last Name</span>
-                                <input type="text" class="form-control" aria-label="Last name" aria-describedby="inputGroup-sizing-default" name="lName" id="lName" placeholder="Enter your last name..." autocomplete="family-name" autocapitalize="family-name">
+                                <input type="text" class="form-control" aria-label="Last name" aria-describedby="inputGroup-sizing-default" name="lName" id="lName" placeholder="Enter your last name..." autocomplete="family-name" autocapitalize="family-name" required>
+                                <div class="valid-feedback">
+                                  Looks good!
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,46 +67,49 @@
                     <!-- Email Address -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" >Email</span>
-                        <input type="email" class="form-control" aria-label="Email" aria-describedby="inputGroup-sizing-default" name="email" id="email" placeholder="Enter your email..." autocomplete="email">
+                        <input type="email" class="form-control" aria-label="Email" aria-describedby="inputGroup-sizing-default" name="email" id="email" placeholder="Enter your email..." autocomplete="email" required>
+                        <div class="invalid-feedback">
+                          Please enter an email.
+                        </div>
                       </div>
                     
                     <!-- Permanent Residents and Zip -->
                     <div class="input-group">
                         <span class="input-group-text">Permanent Residents</span>
-                        <select class="form-select" aria-label="Permanent State Residents?" id="resState" name="resState" autocomplete="on">
+                        <select class="form-select" aria-label="Permanent State Residents?" id="resState" name="resState" autocomplete="on" required>
                             <option selected value="">What's your state?</option>
                           </select>
-                        <input type="text" aria-label="Zip Code" class="form-control" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" name="resZip" id="resZip" autocomplete="postal-code">
+                        <input type="text" aria-label="Zip Code" class="form-control" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" name="resZip" id="resZip" autocomplete="postal-code" required>
                       </div>
                 </section>
-    
+
                 <section>
                     <h3 class="text-left my-lg-4">Institution Information</h3>
                     
                     <!-- Institution Name -->
                     <div class="input-group mb-3">
                         <span class="input-group-text">Institution Name</span>
-                        <input list="insName" type="text" class="form-control" aria-label="Institution Name?" aria-describedby="inputGroup-sizing-default" placeholder="What is your institution?" name="institution" id="institution" autocapitalize="on">
+                        <input list="insName" type="text" class="form-control" aria-label="Institution Name?" aria-describedby="inputGroup-sizing-default" placeholder="What is your institution?" name="institution" id="institution" autocapitalize="on" required>
                             <datalist class="" id="insName">
                                 <!-- Options from database will be listed here -->
-                                <option value="Test value"></option>
-                                <option value="Test Value 2"></option>
+                                <!-- <option value="Test value"></option> -->
+                                <!-- <option value="Test Value 2"></option> -->
                             </datalist>
                       </div>
     
                     <!-- Institution State and Zip -->
                     <div class="input-group mb-3">
                         <span class="input-group-text">Institution Location</span>
-                        <select class="form-select input" aria-label="Institution State and Zip?" id="insState" name="insState">
+                        <select class="form-select input" aria-label="Institution State and Zip?" id="insState" name="insState" required>
                             <option selected value="">Institution's State?</option>
                           </select>
-                        <input type="text" aria-label="Zip Code" class="form-control" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" name="insZip" id="insZip">
+                        <input type="text" aria-label="Zip Code" class="form-control" pattern="[0-9]*" inputmode="numeric" placeholder="Zip Code" name="insZip" id="insZip" required>
                       </div>
     
                     <!-- Institution MSI Type -->
                     <div class="input-group mb-3">
                         <span class="input-group-text">MSI Type</span>
-                        <select class="form-select input" aria-label="Institution MSI Type?" id="msiType" name="msiType">
+                        <select class="form-select input" aria-label="Institution MSI Type?" id="msiType" name="msiType" required>
                             <option selected value="">Type...</option>
                           </select>
                           <select class="form-select input" aria-label="Secondary institution MSI Type if neccessary" id="msiType2" name="msiType2">
@@ -110,7 +119,7 @@
                     
                     <!-- Classification and Major -->
                     <div class="input-group mb-3">
-                        <select class="form-select" aria-label="What is your Classification and Major?" name="classification" id="classification">
+                        <select class="form-select" aria-label="What is your Classification and Major?" name="classification" id="classification" required>
                             <option selected value="">What is your Classification?</option>
                             <option value="Freshmen">Freshmen</option>
                             <option value="Sophomore">Sophomore</option>
@@ -118,35 +127,37 @@
                             <option value="Senior">Senior</option>
                             <option value="Graduate">Graduate</option>
                         </select>
-                        <input type="text" aria-label="Major" class="form-control" placeholder="What is your major?" name="major" id="major" autocapitalize="words">
+                        <input type="text" aria-label="Major" class="form-control" placeholder="What is your major?" name="major" id="major" autocapitalize="words" required>
                     </div>
     
                     <!-- Principle Investigator -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" >Principle Investigator</span>
                         <input type="text" class="form-control" aria-label="What's the name of your principle investigator?" aria-describedby="inputGroup-sizing-default" name="prinInvest" id="prinInvest" placeholder="Who is your principle investigator?" autocapitalize="words">
-                        <p class="text-primary">This field is required</p>
                       </div>
     
                 </section>
-     
+
                 <section>
                     <h3 class="text-left my-lg-4">MSIPP Information</h3>
                     <!-- MSIPP Program -->
                     <div class="input-group mb-3">
                         <span class="input-group-text">MSIPP Program</span>
                         <!-- <input type="text" class="form-control" aria-label="What is your MSIPP Program?" aria-describedby="inputGroup-sizing-default" name="msipp" id="msipp" placeholder="What was your MSIPP Program?" autocapitalize="on"> -->
-                        <select class="form-select" aria-label="What is your MSIPP Program?" name="msipp" id="msipp">
+                        <select class="form-select" aria-label="What is your MSIPP Program?" name="msipp" id="msipp" required>
                             <option selected value="">What is your MSIPP Program?</option>
                         </select>
-                        <input type="number" class="form-control" aria-label="What is your MSIPP Program?" aria-describedby="inputGroup-sizing-default" name="msippYear" id="msippYear" placeholder="What year did you participation?" min="1900" maxlength="4">
+                        <input type="number" class="form-control" aria-label="What is your MSIPP Program?" aria-describedby="inputGroup-sizing-default" name="msippYear" id="msippYear" placeholder="What year did you participation?" min="1900" maxlength="4" required>
                       </div>
                     
                     <div class="input-group mb-3">
                         <span class="input-group-text">National Labratory</span>
-                        <select class="form-select" aria-label="What National Labratory did you attend?" name="lab" id="lab">
+                        <select class="form-select" aria-label="What National Labratory did you attend?" name="lab" id="lab" required>
                             <option selected value="">What was the national labratory?</option>
                         </select>
+                        <div class="invalid-feedback">
+                          Which laboratory did you attend?
+                        </div>
                     </div>
                 </section>
                 

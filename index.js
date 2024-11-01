@@ -47,13 +47,6 @@ const middle = express.urlencoded({
 })
 
 /**
- * Root Page
- */
-// app.get('/', (req, res) => {
-// //     client.connect()
-// // })
-
-/**
  * Thank you page
  */
 
