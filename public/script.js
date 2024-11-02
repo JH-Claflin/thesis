@@ -1,50 +1,81 @@
 import { STATES, NATIONAL_LABS, MSI_CATEGORIES, MSIPP_PROGRAMS } from "./constants.js";
 
 
+const us_colleges = 'http://universities.hipolabs.com/search?country=united+states'
 
-// window.addEventListener('DOMContentLoaded', (event) => {
-//     let institutions = document.getElementById('institution');
-//     let majors = document.getElementById('major');
+fetch(us_colleges)
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data);
 
-//     const baseUrl = 'http://localhost:3000/getinfo' //!Change according to host
+        const institution_data = JSON.parse(JSON.stringify(data));
 
-//     if(institutions && majors) { 
-//         //Make sure that the elements have loaded, prevents errors
+        const institutionNames = institution_data.map(institution => institution.name);
 
-//         const getInfo = async () => {
-//             const res = await fetch(baseUrl, {
-//                 method: 'GET'
-//             })
+        // console.log(institutionNames)
 
-//             const data = await res.json()
-//             institutionSearch = Object.values(data.institutionOptions);
-//             majorSearch = Object.values(data.majorOptions);
+        let textToSearch = ""
 
-//             dataListOptions(institutionSearch, "insNames");
-//             dataListOptions(majorSearch, "majorList");
-//         }
+        let pattern = textToSearch == "" ? "" : textToSearch+"+";
 
-//         getInfo();
-//     }
-// })
+        let flags = "gi";
 
-/**
- * 
- * @param {Array} arrayList 
- * @param {String} elementId 
- */
+        let regex = new RegExp(pattern, flags)
 
-let dataListOptions = (arrayList, elementId) => {
-    const listOfItems = [...arrayList];
-    const id = elementId;
+        let institutionSearch = institutionNames.filter(name => name.match(regex))
+        
+        // console.table(institutionSearch)
 
-    for(let i = 0; i < arrayList.length; i++){
-        let options = document.getElementById("option");
-        options.value = listOfItems[i];
-        let element = document.getElementById(id);
-        element.appendChild(options);
-    }
-}
+
+        const searchInput = document.getElementById('institution');
+        const searchResults = document.getElementById('insSearchResults');
+
+        searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        searchResults.style.display = "block";
+        searchResultsBorders(searchResults.style.display)
+        searchResults.innerHTML = '';
+
+        institutionSearch.forEach(item => {
+            if (item.toLowerCase().includes(query)) {
+            const li = document.createElement('li');
+            li.className = "list-group-item";
+            li.textContent = item;
+            li.addEventListener('click', () => {
+                // Handle the clicked item, e.g., open a new page
+                searchInput.value = li.textContent
+                searchResults.style.display = "none";
+                searchResultsBorders(searchResults.style.display)
+
+            });
+            searchResults.appendChild(li);
+            }
+        });
+        });
+
+        let searchResultsBorders = (display) => {
+            if(display == 'block'){
+                searchResults.style.border = '1px solid rgba(128, 128, 128, 10%)'
+            } else {
+                searchResults.style.border = 'none';
+            }
+        }
+
+        searchInput.addEventListener('blur', () => {
+            if (!searchResults.matches(':hover')) {
+                searchResults.style.display = 'none';
+            }
+        })
+
+        searchInput.addEventListener('focus', () => {
+            searchResults.style.display = 'block';
+        })
+
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
 
 /**
  * 
@@ -83,9 +114,30 @@ selectOptions(MSI_CATEGORIES, "msiType2");
 selectOptions(MSIPP_PROGRAMS, "msipp");
 
 
+
+// Get the current year
+const currentYear = new Date().getFullYear();
+
+// Create a range of years, e.g., from 2014 to the current year
+const startYear = 2014;
+const endYear = currentYear;
+
+// Get the year selector element
+const yearSelector = document.getElementById('msippYear');
+
+// Populate the year selector with options
+for (let year = endYear; year >= startYear; year--) {
+  const option = document.createElement('option');
+  option.value = year;
+  option.text = year;
+  yearSelector.appendChild(option);
+}
+
+
 /**
  * Grabbing the HTML Form data and transfering to the backend to be processed in node js
  */
+
 
 const forms = document.querySelectorAll('.needs-validation')
 
@@ -103,7 +155,7 @@ if (forms) {
                 // console.log(formData);
                 
                 const urlEncoded = new URLSearchParams(formData).toString();
-                // console.log(urlEncoded)
+                console.table(urlEncoded)
 
                 fetch('/submit', {
                     method: "POST", 

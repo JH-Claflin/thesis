@@ -128,7 +128,7 @@ app.post('/submit', middle,(req, res) => {
     
     const query = async () => {
     
-        const check = await client.query(`SELECT * FROM user_data WHERE first_name=$1 AND last_name=$2 AND email=$3`, [firstName, lastName, email]);
+        const check = await client.query(`SELECT * FROM user_data WHERE first_name=$1 AND last_name=$2 AND email=$3 AND msipp_year_parti=$4`, [firstName, lastName, email, msippYear]);
         // console.log(check.rowCount + '<= validation');
         
         if(check.rowCount === 0) {
@@ -140,6 +140,7 @@ app.post('/submit', middle,(req, res) => {
         }
         
         // client.end();
+
     }
     
     query();
