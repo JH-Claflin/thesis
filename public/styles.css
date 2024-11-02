@@ -17,6 +17,7 @@ body {
     height: 100vh;
     width: 100%;
     /* overflow: visible; */
+    max-width: 100vw;
 }
 
 main {
@@ -28,20 +29,35 @@ main {
 
 }
 
-datalist {
+
+.institution_section {
     width: 100%;
-    border: 1px solid black;
-    border-radius: 4px;
-    padding: 10px;
-}
-  
-datalist > option {
-    font-size: 16px;
-    color: black;
-    background-color: white;
+    position: relative;
 }
 
-datalist > option:hover {
-    background-color: #f0f0f0;
+#insSearchResults {
+    position: absolute;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 999;
+    background-color: rgb(220, 220, 220);
+    width: 100%;
 }
+
+
+#insSearchResults li {
+    cursor: pointer;
+    min-width: 100%;
+}
+
+#insSearchResults li:hover {
+    background-color: rgba(13, 110, 253); /*Testing purposes*/
+    color: white;
+}
+
+#insSearchResults li:active {
+    background-color: rgba(13, 110, 253, 75%);
+}
+
+
 
