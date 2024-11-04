@@ -77,7 +77,7 @@
                     <div class="input-group">
                         <span class="input-group-text">Permanent Residents</span>
                         <select class="form-select" aria-label="Permanent State Residents?" id="resState" name="resState" autocomplete="on" required>
-                            <option selected value="">What's your state?</option>
+                            <option selected value="" aria-readonly="true" disabled>What's your state?</option>
                           </select>
                         <input type="text" aria-label="Zip Code" class="form-control" pattern="[0-9]{5}" inputmode="numeric" placeholder="Zip Code" name="resZip" id="resZip" autocomplete="postal-code" minlength="5" required>
                       </div>
@@ -99,7 +99,7 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">Institution Location</span>
                         <select class="form-select input" aria-label="Institution State and Zip?" id="insState" name="insState" required>
-                            <option selected value="">Institution's State?</option>
+                            <option selected value="" aria-readonly="true" disabled>Institution's State?</option>
                           </select>
                         <input type="text" aria-label="Institution Zip Code" class="form-control" pattern="[0-9]{5}" inputmode="numeric" placeholder="Institution Zip Code" name="insZip" id="insZip" minlength="5" autocomplete="off" required>
                       </div>
@@ -108,17 +108,17 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">MSI Type</span>
                         <select class="form-select input" aria-label="Institution MSI Type?" id="msiType" name="msiType" required>
-                            <option selected value="">Type...</option>
+                            <option selected value="" aria-readonly="true" disabled>Type...</option>
                           </select>
                           <select class="form-select input" aria-label="Secondary institution MSI Type if neccessary" id="msiType2" name="msiType2">
-                            <option selected value="">Secondary Type (if applicable)...</option>
+                            <option selected value="" aria-readonly="true" disabled>Secondary Type (if applicable)...</option>
                           </select>
                     </div>
                     
                     <!-- Classification and Major -->
                     <div class="input-group mb-3">
                         <select class="form-select" aria-label="What is your Classification and Major?" name="classification" id="classification" required>
-                            <option selected value="">What is your Classification?</option>
+                            <option selected value="" aria-readonly="true" disabled>What is your Classification?</option>
                             <option value="Freshmen">Freshmen</option>
                             <option value="Sophomore">Sophomore</option>
                             <option value="Junior">Junior</option>
@@ -142,17 +142,17 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">MSIPP Program</span>
                         <select class="form-select" aria-label="What is your MSIPP Program?" name="msipp" id="msipp" required>
-                            <option selected value="">What is your MSIPP Program?</option>
+                            <option selected value="" aria-readonly="true" disabled>What is your MSIPP Program?</option>
                         </select>
                         <select class="form-select" aria-label="What year did you participate in the MSIPP Program?" name="msippYear" id="msippYear" required>
-                          <option selected value="">What year did you participate in the MSIPP Program?</option>
+                          <option selected value="" aria-readonly="true" disabled>What year did you participate in the MSIPP Program?</option>
                         </select>
                       </div>
                     
                     <div class="input-group mb-3">
                         <span class="input-group-text">National Labratory</span>
                         <select class="form-select" aria-label="What National Labratory did you attend?" name="lab" id="lab" required>
-                            <option selected value="">What was the national labratory?</option>
+                            <option selected value="" disabled aria-readonly="true">What was the national labratory?</option>
                         </select>
                         <div class="invalid-feedback">
                           Which laboratory did you attend?
