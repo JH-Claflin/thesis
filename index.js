@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { Client } = require('pg');
+
 const path = require('path');
 require('dotenv').config()
 
@@ -12,21 +12,6 @@ require('dotenv').config()
 const app = express();
 const port = process.env.APP_PORT || 3000;
 const publicPath = path.join(__dirname, 'public');
-
-
-/**
- *  Database Configuration
-*/
-
-const client = new Client({
-    host: process.env.DB_HOST,       
-    port: process.env.DB_PORT || 5432, 
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
-});
-
-client.connect();
 
 
 /***
@@ -59,21 +44,6 @@ app.use('/dashboard', dashboardRoute);
 app.use('/submit', submitRoute);
 app.use('*', errorRoute);
 
-
-/**
- * Database Terminal Notification
- */
-
-client.on("connect", () => {
-    console.log("Connection started");
-})
-
-    
-client.on("end", () => {
-    console.log("Connection end");
-})
-
-
 /**
  * Web App Terminal Information
  */
@@ -81,5 +51,3 @@ client.on("end", () => {
 app.listen(port, () => {
     console.log(`App is listening at http://localhost:${port}`);
 })
-
-
