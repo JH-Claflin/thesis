@@ -1,4 +1,4 @@
-import { STATES, NATIONAL_LABS, MSI_CATEGORIES, MSIPP_PROGRAMS } from "./constants.js";
+import { STATES, NATIONAL_LABS, MSI_CATEGORIES, MSIPP_PROGRAMS, CLASSIFICATIONS} from "./constants.js";
 
 
 const us_colleges = 'http://universities.hipolabs.com/search?country=united+states'
@@ -112,6 +112,7 @@ selectOptions(NATIONAL_LABS, "lab");
 selectOptions(MSI_CATEGORIES, "msiType");
 selectOptions(MSI_CATEGORIES, "msiType2");
 selectOptions(MSIPP_PROGRAMS, "msipp");
+selectOptions(CLASSIFICATIONS, "classification")
 
 
 

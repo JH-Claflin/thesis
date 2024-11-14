@@ -112,3 +112,10 @@ export const MSIPP_PROGRAMS = [
     {name: 'Postdoctoral Research'},
 ]
 
+export const CLASSIFICATIONS = [ 
+    {name:'Freshman'}, 
+    {name:'Sophomore'}, 
+    {name:'Junior'}, 
+    {name:'Senior'}
+]
+

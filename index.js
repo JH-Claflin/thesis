@@ -6,6 +6,19 @@ require('dotenv').config()
 
 
 /**
+ * TODO: You Must Make A Graphical User Interface that
+ * pulls data from the database and generates data visualization
+ * the metrics that should be displayed are:
+ * Types of MSIPP Programs, Which Labs, Type of Schools, Majors
+ * 
+ *  Classification, Lab, Major => Grouped Stacked Bar Chart
+ *  Type of Institution Type, MSIPP Programs => Pie Chart
+ *  Major => Drilldown Pie Chart
+ *  
+*/
+
+
+/**
  *  Web App Configuration
 */
 
@@ -30,6 +43,7 @@ const dashboardRoute = require('./routes/Dashboard_Route');
 const successRoute = require('./routes/Success_Route');
 const errorRoute = require('./routes/Error_Route');
 const submitRoute = require('./routes/Submit_Route');
+const dataRoute = require('./routes/Data_Route');
 
 /**
  * Web Application Page Routing
@@ -42,6 +56,7 @@ app.get('/', (req, res) => {
 app.use('/success', successRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/submit', submitRoute);
+app.use('/data', dataRoute);
 app.use('*', errorRoute);
 
 /**
