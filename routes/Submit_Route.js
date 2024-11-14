@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const client = require('../db.js');
 
-// Database connection
-client.connect()
-
 /**
  * Database Terminal Notification
  */
@@ -81,7 +78,7 @@ router.post('/', middle,(req, res) => {
     const query = async () => {
     
         const check = await client.query(`SELECT * FROM user_data WHERE first_name=$1 AND last_name=$2 AND email=$3 AND msipp_year_parti=$4`, [firstName, lastName, email, msippYear]);
-        console.log(check.rowCount + '<= validation');
+        // console.log(check.rowCount + '<= validation');
         
         if(check.rowCount === 0) {
             const result = await client.query(
@@ -92,6 +89,7 @@ router.post('/', middle,(req, res) => {
         }
         
         // client.end();
+        client.release //! TODO: Test this out
 
     }
     
