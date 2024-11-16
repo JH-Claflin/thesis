@@ -41,6 +41,11 @@ main {
     color: var(--background-color);
 }
 
+#institution {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 #insSearchResults {
     position: absolute;
     max-height: 400px;
@@ -62,6 +67,38 @@ main {
 }
 
 #insSearchResults li:active {
+    background-color: rgba(13, 110, 253, 75%);
+}
+
+#majorSection {
+    position: relative;
+}
+
+#major {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#majSearchResults {
+    position: absolute;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 999;
+    background-color: rgb(220, 220, 220);
+    width: 100%;
+}
+
+#majSearchResults li {
+    cursor: pointer;
+    min-width: 100%;
+}
+
+#majSearchResults li:hover {
+    background-color: rgba(13, 110, 253); /*Testing purposes*/
+    color: white;
+}
+
+#majSearchResults li:active {
     background-color: rgba(13, 110, 253, 75%);
 }
 

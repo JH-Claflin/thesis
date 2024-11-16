@@ -101,9 +101,11 @@
                   <div class="institution_section mb-3">
                     <div class="input-group">
                         <span class="input-group-text">Institution Name</span>
-                        <input type="search" class="form-control" aria-label="Institution Name?" aria-describedby="inputGroup-sizing-default" placeholder="What is your institution?" name="institution" id="institution" autocapitalize="on" autocomplete="off" minlength="3" required>
+                        <div class="form-control p-0">
+                          <input type="search" class="form-control m-0" aria-label="Institution Name?" aria-describedby="inputGroup-sizing-default" placeholder="What is your institution?" name="institution" id="institution" autocapitalize="on" autocomplete="off" minlength="3" required>
+                          <ul id="insSearchResults" class="list-group"></ul>
+                        </div>
                       </div>
-                      <ul id="insSearchResults" class="list-group"></ul>
                   </div>
   
                   <!-- Institution State and Zip -->
@@ -131,7 +133,10 @@
                       <select class="form-select" aria-label="What is your Classification and Major?" name="classification" id="classification" required>
                           <option selected value="" aria-readonly="true" disabled>What is your Classification?</option>
                       </select>
-                      <input type="text" aria-label="Major" class="form-control" placeholder="What is your major?" name="major" id="major" autocapitalize="words" autocomplete="off" minlength="3" required>
+                      <div class="form-control p-0" id="majorSection">
+                        <input type="text" aria-label="Major" class="form-control m-0" placeholder="What is your major?" name="major" id="major" autocapitalize="words" autocomplete="off" minlength="3" required>
+                        <ul id="majSearchResults" class="list-group"></ul>
+                      </div>
                   </div>
   
                   <!-- Principle Investigator -->

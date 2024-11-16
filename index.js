@@ -44,6 +44,7 @@ const successRoute = require('./routes/Success_Route');
 const errorRoute = require('./routes/Error_Route');
 const submitRoute = require('./routes/Submit_Route');
 const dataRoute = require('./routes/Data_Route');
+const majorDataRoute = require('./routes/Major_Data_Route');
 
 /**
  * Web Application Page Routing
@@ -57,6 +58,7 @@ app.use('/success', successRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/submit', submitRoute);
 app.use('/data', dataRoute);
+app.use('/majors', majorDataRoute);
 app.use('*', errorRoute);
 
 /**
