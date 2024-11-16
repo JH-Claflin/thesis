@@ -271,7 +271,8 @@ const dbValueFormat = (str) => {
 
 //Data to be sent to the charts
 export const chartInfo = await fetchData();
-console.log(chartInfo)
+
+
 
 
 

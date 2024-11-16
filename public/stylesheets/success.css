@@ -1,3 +1,5 @@
+@import url(./design.css);
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -5,10 +7,6 @@
 
 body {
   margin: inherit;
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
   border-left: 0;
 }
 

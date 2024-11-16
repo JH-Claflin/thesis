@@ -1,3 +1,5 @@
+@import url(./design.css);
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -7,26 +9,36 @@
 
 body {
     margin: 0;
-    width: 100%;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-    overflow-x: hidden;
     border-left: 0;
+    background-color: var(--background-color-25);
+}
+
+.container{
+    background-color: var(--background-color);
 }
 
 main {
     display: grid;
-    /* margin: auto; */
     place-content: center;
     min-width: 500px;
-    /* max-width: 60%; */
-
+    padding: 1.5em;
 }
 
 
 .institution_section {
     width: 100%;
     position: relative;
+}
+
+
+.btn-color {
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.btn-color:hover {
+    background-color: var(--accent-color-hover);
+    color: var(--background-color);
 }
 
 #insSearchResults {
