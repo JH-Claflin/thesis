@@ -10,7 +10,8 @@
 body {
     margin: 0;
     border-left: 0;
-    background-color: var(--background-color-25);
+    /* background-color: var(--background-color-25); */
+    background-color: var(--primary-color);
 }
 
 .container{

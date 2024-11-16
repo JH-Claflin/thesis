@@ -23,14 +23,14 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="home page" href="/">
               <div class="iconNbutton">
-                <i class="material-icons">home</i><p>Home</p>
+                <i class="material-icons">home</i> Home
               </div>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">
               <div class="iconNbutton">
-                <i class="material-icons">assessment</i><p>Dashboard</p>
+                <i class="material-icons">assessment</i> Dashboard
               </div>
             </a>
           </li>
@@ -39,11 +39,23 @@
     </div>
   </nav>
     <main>
-      <div class="title">
-          <h1 class="text-center mb-3"> <%=title%> Error</h1>
+      <div class="container">
+        <div class="content">
+          <h1 id="title" class="text-center mb-3"> <%=title%> Error</h1>
           <h3 class="text-center mb-3">Sorry an error has occurred, Page not found...</h3>
-          <a href="/"><h3 class="text-center">Go Back.</h3></a>
-      </div>
+          <div class="nav-button">
+            <a class="button-design" href="/">
+              <div class="iconNbutton">
+                <i class="material-icons">home</i> Home
+              </div>
+            </a>
+            <a class="button-design" href="/dashboard">
+              <div class="iconNbutton">
+                <i class="material-icons">assessment</i> Dashboard
+              </div>
+            </a>
+          </div>
+        </div>
     </main>   
     
     

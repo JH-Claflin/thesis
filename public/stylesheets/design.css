@@ -1,6 +1,7 @@
 :root {
     --text-primary: #050316;
     --background-color: #fbfbfe;
+    --background-color-card: hwb(240 98% 8%);
     --background-color-25: hwb(240 98% 25%);
     --background-color-50: hwb(240 98% 50%);
     --background-color-75: hwb(240 98% 75%);
@@ -49,5 +50,9 @@ nav img {
     display: flex;
     flex-direction: row;
     gap: 0.125rem;
+    width: 100%;
+    height: 100%;
 }
+
+
 
