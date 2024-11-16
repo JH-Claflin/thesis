@@ -1,4 +1,5 @@
 import { STATES, NATIONAL_LABS, MSI_CATEGORIES, MSIPP_PROGRAMS, CLASSIFICATIONS} from "./constants.js";
+import { labelFormatting } from "./dashboard.js";
 
 
 const us_colleges = 'http://universities.hipolabs.com/search?country=united+states'
@@ -37,6 +38,80 @@ fetch(us_colleges)
         searchResults.innerHTML = '';
 
         institutionSearch.forEach(item => {
+            if (item.toLowerCase().includes(query)) {
+            const li = document.createElement('li');
+            li.className = "list-group-item";
+            li.textContent = item;
+            li.addEventListener('click', () => {
+                // Handle the clicked item, e.g., open a new page
+                searchInput.value = li.textContent
+                searchResults.style.display = "none";
+                searchResultsBorders(searchResults.style.display)
+
+            });
+            searchResults.appendChild(li);
+            }
+        });
+        });
+
+        let searchResultsBorders = (display) => {
+            if(display == 'block'){
+                searchResults.style.border = '1px solid rgba(128, 128, 128, 10%)'
+            } else {
+                searchResults.style.border = 'none';
+            }
+        }
+
+        searchInput.addEventListener('blur', () => {
+            if (!searchResults.matches(':hover')) {
+                searchResults.style.display = 'none';
+            }
+        })
+
+        searchInput.addEventListener('focus', () => {
+            searchResults.style.display = 'block';
+        })
+
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+//Search for majors
+    fetch('/majors')
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data);
+
+        const major_data = JSON.parse(JSON.stringify(data));
+
+        const majorNames = major_data.map(obj => labelFormatting(obj.major));
+
+        // console.log(majorNames);
+
+        let textToSearch = "";
+
+        let pattern = textToSearch == "" ? "" : textToSearch+"+";
+
+        let flags = "gi";
+
+        let regex = new RegExp(pattern, flags)
+
+        let majorSearch = majorNames.filter(name => name.match(regex))
+        
+        // console.table(majorSearch)
+
+
+        const searchInput = document.getElementById('major');
+        const searchResults = document.getElementById('majSearchResults');
+
+        searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        searchResults.style.display = "block";
+        searchResultsBorders(searchResults.style.display)
+        searchResults.innerHTML = '';
+
+        majorSearch.forEach(item => {
             if (item.toLowerCase().includes(query)) {
             const li = document.createElement('li');
             li.className = "list-group-item";

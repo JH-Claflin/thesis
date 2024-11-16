@@ -245,7 +245,7 @@ const labelProperties = (list, property) => {
 }
 
 //Label formatting
-const labelFormatting = (str) => {
+export const labelFormatting = (str) => {
     str = str.toLowerCase()
     const words = str.split(' ')
     const capitalizedWords = words.map(word => {
@@ -269,9 +269,11 @@ const dbValueFormat = (str) => {
 
 
 
+
 //Data to be sent to the charts
 export const chartInfo = await fetchData();
-console.log(chartInfo)
+
+
 
 
 

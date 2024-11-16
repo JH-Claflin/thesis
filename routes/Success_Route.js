@@ -7,7 +7,7 @@ const router = express.Router();
  */
 
 router.get('/', (req, res) => {
-    res.render("success", {title: "Thank you"});
+    res.render("success", {title: "Thank You!"});
 })
 
 

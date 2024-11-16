@@ -1,3 +1,5 @@
+@import url(./design.css);
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -5,15 +7,53 @@
 
 body {
   margin: inherit;
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
   border-left: 0;
 }
 
-main {
+.container {
   place-content: center;
   height: 100%;
   display: block;
+}
+
+.content {
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: var(--background-color-card);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, p {
+  text-align: center;
+}
+
+#title {
+  color: var(--primary-color);
+}
+
+p {
+  color: var(--text-primary);
+}
+
+.nav-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 50px;
+}
+
+.button-design {
+  flex: 1;
+  display: inline-block;
+  padding: 20px 50px;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; 
+  justify-content: center;
 }

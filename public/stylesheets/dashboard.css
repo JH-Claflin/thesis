@@ -1,9 +1,9 @@
+@import url(./design.css);
+
 :root {
     --border-radius-df: 0px 15px 15px 0px;
     --padding-sm-value: 10px;
-    --border-accent-color: #ccc;
-    --active-bg-color: #ddd;
-    --border-separate-df: 1px solid var(--border-accent-color);
+    --border-separate-df: 1px solid var(--background-color-50);
 }
 
 
@@ -15,10 +15,6 @@
 
 body {
     margin: inherit;
-    width: 100%;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-    overflow-x: hidden;
     border-left: 0;
 }
 
@@ -26,8 +22,9 @@ body {
     display: flex;
     width: 100%;
     height: 100%; /* Adjust height as needed */
-    border-radius: var(--border-radius-df);
+    border-radius: var(--background-color-50);
     padding: var(--padding-sm-value) 0;
+    background-color: var(--background-color-25);
 }
 
 .tabs {
@@ -38,7 +35,7 @@ body {
     border-top: var(--border-separate-df);
     border-right: var(--border-separate-df);
     border-bottom: var(--border-separate-df);
-    background-color: var(--active-bg-color);
+    background-color: var(--accent-color-50);
     border-radius: var(--border-radius-df);
 }
 
@@ -49,12 +46,19 @@ body {
     width: 100%;
     height: calc(100%/2);
     border-radius: var(--border-radius-df);
+    background-color: var(--accent-color-50);
+    color: var(--background-color);
 }
 
+
 .tab.active {
-    background-color: var(--active-bg-color);
+    background-color: var(--accent-color);
     /* border-radius: 0px; */
     cursor: default;
+}
+
+.tabs:hover, .tab:hover {
+    background-color: var(--accent-color-25);
 }
 
 .content {
@@ -75,8 +79,14 @@ body {
 
 .rotated-text {
     transform: rotate(90deg);
+    text-align: center;
     white-space: nowrap;
     overflow: visible;
+    margin-bottom: 3.5rem;
+}
+
+.tab img {
+    filter: grayscale(100%);
 }
 
 iframe {
@@ -87,7 +97,7 @@ iframe {
 }
 
 .charts-wrapper {
-    background-color: rgb(23, 23, 23);
+    background-color: var(--background-color);
     border-radius: 15px;
     display: grid;
     height: 100%;
@@ -106,8 +116,8 @@ iframe {
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.578);
-    border: solid white 0.25em;
+    background-color: var(--background-color-25);
+    border: solid var(--background-color-chart) 0.25em;
     border-radius: 1em;
     padding: 0.5em;
 }

@@ -2,6 +2,8 @@ import { chartInfo } from "./dashboard.js";
 import { NATIONAL_LABS } from "./constants.js";
 
 const NATIONAL_LABS_NAME = NATIONAL_LABS.map(obj => `${obj.name} (${obj.abbreviation})`);
+setInterval(chartInfo, 300000);
+
 // console.log(NATIONAL_LABS_NAME);
 
   //#####################################  Highcharts JS ################################
@@ -293,13 +295,14 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
             text: 'National Laboratories',
             style: {
                 fontSize: chartStyle.fontSize.xxs,
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+                align: 'center'
             }
         },
         categories: NATIONAL_LABS_NAME, //Grouped Bars Categories (This would be for my Labs) (x-axis)
         labels: {
             style: {
-                color: 'white',
+                color: '#050316',
                 fontSize: chartStyle.fontSize.xxxs,
             }
         },
@@ -325,7 +328,7 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
         labels: {
             style: {
                 color: 'white',
-                
+                align: 'center'
             }
         },
     },
@@ -346,7 +349,7 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
             dataLabels: {
                 enabled: false
             },
-            groupPadding: 0.1,
+            groupPadding: 0.15,
             pointPadding: 0.05,
         },
         series: {
