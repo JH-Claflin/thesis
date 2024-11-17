@@ -17,7 +17,7 @@
 
 body {
     width: 100%;
-    height: calc(100vh - 67px);
+    height: calc(100vh - 71px);
     overflow-y: auto;
     overflow-x: hidden;
 }
