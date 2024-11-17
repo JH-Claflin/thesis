@@ -52,7 +52,7 @@ export let fetchData = async () => {
     // console.table(msiProgPieData);
     // console.table(majorDrilldownData)
     // console.table(msiTypePieData)
-    // console.log(programOverview);
+    console.table(programOverview);
     
     
     return {msiTypePieData, msiProgPieData, majorDrilldownData, programOverview}

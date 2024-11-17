@@ -1,24 +1,12 @@
 import { chartInfo } from "./dashboard.js";
 import { NATIONAL_LABS } from "./constants.js";
 
-const NATIONAL_LABS_NAME = NATIONAL_LABS.map(obj => `${obj.name} (${obj.abbreviation})`);
+const NATIONAL_LABS_ABBR = NATIONAL_LABS.map(obj => `${obj.abbreviation}`);
 setInterval(chartInfo, 300000);
 
 // console.log(NATIONAL_LABS_NAME);
 
   //#####################################  Highcharts JS ################################
-// window.addEventListener('resize', () => {
-//   const viewportWidth = window.innerWidth;
-//   const baseFontSize = 16; // Adjust this base font size as needed
-
-//   // Calculate a multiplier based on viewport width (you can adjust the formula as needed)
-//   const fontSizeMultiplier = viewportWidth / 1000; // Adjust the divisor for desired scaling
-
-//   // Set the font size for the root element (html)
-//   document.documentElement.style.fontSize = `${baseFontSize * fontSizeMultiplier}px`;
-// });
-
-
 
 const chartStyle = {
     fontSize : {
@@ -63,7 +51,7 @@ const chartStyle = {
   }
   
   
-  
+  /*-----------------------Institution Type Chart--------------------------*/
   
   Highcharts.chart('institutionType', {
     chart: {
@@ -87,8 +75,8 @@ const chartStyle = {
         floating: false
     },
     tooltip: {
-        headerFormat: '<span style="font-size:12px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name2}</span>: ' +
+        headerFormat: '<b><span style="font-size:12px">{series.name}</span></b><br/>',
+        pointFormat: '<span style="color:{point.color}">{point.name2}</span>: <br/>' +
             '<b>{point.percentage:.2f}%</b> of total<br/>',
         backgroundColor: 'rgba(0, 0, 0, .75)',
         borderWidth: 2,
@@ -116,11 +104,11 @@ const chartStyle = {
                     const name = this.point.name;
                     // const percentage = (Math.round(this.y*100)/100).toFixed(1);
                     const percentage = this.percentage.toFixed(1)
-                    let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%`;
+                    let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%<br/>`;
                     if (percentage < 7) {
                         label = ``
                     } else if (percentage <= 10) {
-                        label = `<span style="color: white;"><b>${name}</b>`
+                        label = `<span style="color: white;"><b>${name}</b><br/>`
                     }
                     return label;
                 },
@@ -147,7 +135,7 @@ const chartStyle = {
   });
   
 
-
+/*-----------------------MSIPP Program Chart--------------------------*/
 
 Highcharts.chart('msippProgram', {
     chart: {
@@ -172,8 +160,8 @@ Highcharts.chart('msippProgram', {
         floating: false
     },
     tooltip: {
-        headerFormat: '<span style="font-size:12px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+        headerFormat: '<b><span style="font-size:12px">{series.name}</span></b><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: </br>' +
             '<b>{point.percentage:.2f}%</b> of total<br/>',
         backgroundColor: 'rgba(0, 0, 0, .75)',
         borderWidth: 2,
@@ -200,11 +188,11 @@ Highcharts.chart('msippProgram', {
                     const name = this.point.name;
                     // const percentage = (Math.round(this.y*100)/100).toFixed(1);
                     const percentage = this.percentage.toFixed(1);
-                    let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%`;
+                    let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%<br/>`;
                     if (percentage < 7) {
                         label = ``
                     } else if (percentage <= 10) {
-                        label = `<span style="color: white;"><b>${name}</b>`
+                        label = `<span style="color: white;"><b>${name}</b><br/>`
                     }
                     return label;
                 },
@@ -232,6 +220,9 @@ Highcharts.chart('msippProgram', {
   });
   
 const tooltipText = '<b>Additional Information:</b><br>This is some extra text to display on hover.';
+
+
+/*-----------------------Program Overview Chart--------------------------*/
 
   
   Highcharts.chart('programOverview', {
@@ -299,7 +290,7 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
                 align: 'center'
             }
         },
-        categories: NATIONAL_LABS_NAME, //Grouped Bars Categories (This would be for my Labs) (x-axis)
+        categories: NATIONAL_LABS_ABBR, //Grouped Bars Categories (This would be for my Labs) (x-axis)
         labels: {
             style: {
                 color: '#050316',
@@ -334,7 +325,17 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
     },
   
     tooltip: {
-        format: '<b>{key}</b><br/>{series.name}: {y}<br/>Total: {point.stackTotal} ({point.percentage:.2f}%)<br/>',
+        formatter: function() {
+            const key = this.key;
+            const percentage = this.percentage.toFixed(2);
+            const series = this.series.name;
+            const key_name = NATIONAL_LABS.filter(obj => obj.abbreviation == key).map(obj => obj.name);
+            const stackTotal = this.point.stackTotal;
+            const yValue = this.y;
+
+            let label = `<b>${key_name} (${key})</b><br/>${series}: ${yValue}<br/>Total: ${stackTotal} (${percentage}%)<br/>`;
+            return label;
+        },
         backgroundColor: 'rgba(0, 0, 0, .75)',
         borderWidth: 2,
         style: {
@@ -349,7 +350,7 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
             dataLabels: {
                 enabled: false
             },
-            groupPadding: 0.15,
+            groupPadding: 0.1,
             pointPadding: 0.05,
         },
         series: {
@@ -360,6 +361,11 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
     series: chartInfo.programOverview
   });
   
+
+
+
+
+/*-----------------------Major DrillDown Chart--------------------------*/
   
   Highcharts.chart('majorDrilldown', {
     pie: {
@@ -412,18 +418,12 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
                         const series = this.series.name;
                         
   
-                        let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%`;
+                        let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%<br/>`;
                         if (name != 'Other' && series != 'Other'){
                             if (this.percentage < 7) {
-                                label = `<span style="color: white;"><b>${name}</b>`
+                                label = `<span style="color: white;"><b>${name}</b><br/>`
                             }
                         }
-  
-                        // //TODO: To get the others' percentage to show correctly, get the y of the others and divide it by the drill-down series y
-                        // //? It is possible that we can do the calculation elsewhere instead of using the chart then assign it to y
-                        // if (series == 'Other') {
-                        //     label = `<span style="color: white;"><b>${name}</b></span><br/>${otherPercentage}%`
-                        // }
   
                         return label;
                     },
@@ -442,8 +442,8 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
     },
   
     tooltip: {
-        headerFormat: '<span style="font-size:12px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+        headerFormat: '<b><span style="font-size:12px">{series.name}</span></b><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: </br>' +
             '<b>{point.percentage:.2f}%</b> of total<br/>',
         backgroundColor: 'rgba(0, 0, 0, .75)',
         borderWidth: 2,
@@ -471,7 +471,6 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
                 padding: 12,
                 stroke: '#cccccc',
                 'stroke-width': 2,
-                // borderRadius: chartStyle.borderRadius.borderRadius_sm
             },
             floating: true,
             position: {

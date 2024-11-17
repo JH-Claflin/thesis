@@ -116,6 +116,7 @@ export const CLASSIFICATIONS = [
     {name:'Freshman'}, 
     {name:'Sophomore'}, 
     {name:'Junior'}, 
-    {name:'Senior'}
+    {name:'Senior'},
+    {name: 'Graduate'}
 ]
 
