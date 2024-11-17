@@ -52,7 +52,7 @@ export let fetchData = async () => {
     // console.table(msiProgPieData);
     // console.table(majorDrilldownData)
     // console.table(msiTypePieData)
-    console.table(programOverview);
+    // console.table(programOverview);
     
     
     return {msiTypePieData, msiProgPieData, majorDrilldownData, programOverview}
@@ -174,6 +174,7 @@ const groupStackedBarGraph = (xAxis, bars, stacks, dataToParse) => {
     const xAxisAbbr = labelProperties(xAxis, 'abbreviation');
     const Classification = labelProperties(bars, 'name');
     const programStack = labelProperties(stacks, 'name');
+    const underGradPrograms = programStack.filter(obj => !['Graduate Fellowship', 'Postdoctoral Research'].includes(obj));
     let sortedLabs;
     let sortedClassification;
     let sortedPrograms;
@@ -189,12 +190,16 @@ const groupStackedBarGraph = (xAxis, bars, stacks, dataToParse) => {
 
     for(let i = 0; i < Classification.length; i++) {
         let classificationStack = Classification[i];
-        sortedClassification = dataToParse.filter(obj => obj.classification == dbValueFormat(Classification[i]))
+        sortedClassification = dataToParse.filter(obj => obj.classification == dbValueFormat(Classification[i]));
 
-        for(let i = 0; i < programStack.length; i++) {
-            let programName = programStack[i];
+
+        let programStackModified = classificationStack != 'Graduate' ? underGradPrograms: programStack;
+
+
+        for(let i = 0; i < programStackModified.length; i++) {
+            let programName = programStackModified[i];
             let data = [];
-            sortedPrograms = sortedClassification.filter(obj => obj.msipp_prog == dbValueFormat(programStack[i]))
+            sortedPrograms = sortedClassification.filter(obj => obj.msipp_prog == dbValueFormat(programStackModified[i]));
 
             for(let i = 0; i < xAxis.length; i++) {
                 sortedLabs = sortedPrograms.filter(obj => obj.national_lab == xAxisAbbr[i]);
