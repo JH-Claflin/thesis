@@ -48,7 +48,7 @@ p {
 .button-design {
   flex: 1;
   display: inline-block;
-  padding: 20px 50px;
+  padding: calc(20%/3);
   background-color: var(--secondary-color);
   color: var(--background-color);
   border: none;
