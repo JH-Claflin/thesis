@@ -186,8 +186,86 @@ selectOptions(STATES, "insState");
 selectOptions(NATIONAL_LABS, "lab");
 selectOptions(MSI_CATEGORIES, "msiType");
 selectOptions(MSI_CATEGORIES, "msiType2");
-selectOptions(MSIPP_PROGRAMS, "msipp");
-selectOptions(CLASSIFICATIONS, "classification")
+
+const conditionalOptions = () => {
+    
+    const classificationElem = document.getElementById("classification");
+    const msippProgElem = document.getElementById("msipp");
+    let programList = [...MSIPP_PROGRAMS];
+    let classificationList = [...CLASSIFICATIONS]
+    const moddedPrograms = programList.filter(obj => !['Graduate Fellowship', 'Postdoctoral Research'].includes(obj.name))
+    const moddedClassisfication = classificationList.filter(obj => "Graduate".includes(obj.name));
+    let modifiedProgramList = programList;
+    let modifiedClassificationList = classificationList;
+    let programTemp;
+    let classTemp;
+    
+    
+    classificationElem.addEventListener('change', () => {
+        if (msippProgElem.value != '') {
+            programTemp = msippProgElem.value;
+        }
+
+        if (classificationElem.value != ''){
+            classTemp = classificationElem.value;
+        }
+
+        modifiedProgramList = (classificationElem.value == 'Graduate') ? programList : moddedPrograms;
+        // console.table(modifiedProgramList)
+        msippProgElem.innerHTML = '<option selected value="" aria-readonly="true" disabled>What is your MSIPP Program?</option>'; //Clears the options values
+        
+        
+        selectOptions(modifiedProgramList, "msipp");
+        
+        if (programTemp != '' && programTemp != undefined) {
+            msippProgElem.value = programTemp;
+        }
+
+        if (classTemp != '' && classTemp != undefined) {
+            classificationElem.value = classTemp;
+        }
+        
+    })
+    
+    
+    msippProgElem.addEventListener('change', () => {
+
+        if (msippProgElem.value != '') {
+            programTemp = msippProgElem.value;
+        }
+
+        if (classificationElem.value != ''){
+            classTemp = classificationElem.value;
+        }
+
+        modifiedClassificationList = (msippProgElem.value == 'Graduate Fellowship' || msippProgElem.value == 'Postdoctoral Research') ? moddedClassisfication : classificationList;
+        // console.table(modifiedClassificationList)
+        classificationElem.innerHTML = '<option selected value="" aria-readonly="true" disabled>What is your Classification?</option>';
+        
+        // if (msippProgElem.value == 'Graduate Fellowship' || msippProgElem.value == 'Postdoctoral Research') {
+        //     classificationElem.value = 'Graduate';
+        // } else {
+        //     classificationElem.value = temp
+        // }
+        
+        
+        selectOptions(modifiedClassificationList, "classification");
+        
+        if (programTemp != '' && programTemp != undefined) {
+            msippProgElem.value = programTemp;
+        }
+
+        if (classTemp != '' && classTemp != undefined) {
+            classificationElem.value = classTemp;
+        }
+        
+    })
+    
+    selectOptions(modifiedClassificationList, "classification");
+    selectOptions(modifiedProgramList, "msipp");
+}
+
+conditionalOptions();
 
 
 
