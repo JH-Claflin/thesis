@@ -1,84 +1,153 @@
 import { STATES, NATIONAL_LABS, MSI_CATEGORIES, MSIPP_PROGRAMS, CLASSIFICATIONS} from "./constants.js";
 import { labelFormatting } from "./dashboard.js";
+import world_universities_and_domains from '../json/world_universities_and_domains.json' with {type: 'json'};
 
 
-const us_colleges = 'http://universities.hipolabs.com/search?country=united+states'
+// const us_colleges = 'http://universities.hipolabs.com/search?country=united+states'; //! This can be removed, but its the source of JSON.
 
-fetch(us_colleges)
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data);
+const us_colleges = world_universities_and_domains.filter(item => item.country == "United States");
+// console.table(us_colleges);
 
-        const institution_data = JSON.parse(JSON.stringify(data));
+const collegeSearch = (collegeData) => {
+    const institutionNames = collegeData.map(institution => institution.name);
+    // console.table(institutionNames);
 
-        const institutionNames = institution_data.map(institution => institution.name);
+    let textToSearch = ""
 
-        // console.log(institutionNames)
+    let pattern = textToSearch == "" ? "" : textToSearch+"+";
 
-        let textToSearch = ""
+    let flags = "gi";
 
-        let pattern = textToSearch == "" ? "" : textToSearch+"+";
+    let regex = new RegExp(pattern, flags)
 
-        let flags = "gi";
+    let institutionSearch = institutionNames.filter(name => name.match(regex))
+    
+    const searchInput = document.getElementById('institution');
+    
+    const searchResults = document.getElementById('insSearchResults');
 
-        let regex = new RegExp(pattern, flags)
+    searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    searchResults.style.display = "block";
+    searchResultsBorders(searchResults.style.display)
+    searchResults.innerHTML = '';
 
-        let institutionSearch = institutionNames.filter(name => name.match(regex))
-        
-        // console.table(institutionSearch)
+    institutionSearch.forEach(item => {
+        if (item.toLowerCase().includes(query)) {
+        const li = document.createElement('li');
+        li.className = "list-group-item";
+        li.textContent = item;
+        li.addEventListener('click', () => {
+            // Handle the clicked item, e.g., open a new page
+            searchInput.value = li.textContent
+            searchResults.style.display = "none";
+            searchResultsBorders(searchResults.style.display)
 
-
-        const searchInput = document.getElementById('institution');
-        const searchResults = document.getElementById('insSearchResults');
-
-        searchInput.addEventListener('input', () => {
-        const query = searchInput.value.toLowerCase();
-        searchResults.style.display = "block";
-        searchResultsBorders(searchResults.style.display)
-        searchResults.innerHTML = '';
-
-        institutionSearch.forEach(item => {
-            if (item.toLowerCase().includes(query)) {
-            const li = document.createElement('li');
-            li.className = "list-group-item";
-            li.textContent = item;
-            li.addEventListener('click', () => {
-                // Handle the clicked item, e.g., open a new page
-                searchInput.value = li.textContent
-                searchResults.style.display = "none";
-                searchResultsBorders(searchResults.style.display)
-
-            });
-            searchResults.appendChild(li);
-            }
         });
-        });
-
-        let searchResultsBorders = (display) => {
-            if(display == 'block'){
-                searchResults.style.border = '1px solid rgba(128, 128, 128, 10%)'
-            } else {
-                searchResults.style.border = 'none';
-            }
+        searchResults.appendChild(li);
         }
-
-        searchInput.addEventListener('blur', () => {
-            if (!searchResults.matches(':hover')) {
-                searchResults.style.display = 'none';
-            }
-        })
-
-        searchInput.addEventListener('focus', () => {
-            searchResults.style.display = 'block';
-        })
-
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
+    });
     });
 
+    let searchResultsBorders = (display) => {
+        if(display == 'block'){
+            searchResults.style.border = '1px solid rgba(128, 128, 128, 10%)'
+        } else {
+            searchResults.style.border = 'none';
+        }
+    }
+
+    searchInput.addEventListener('blur', () => {
+        if (!searchResults.matches(':hover')) {
+            searchResults.style.display = 'none';
+        }
+    })
+
+    searchInput.addEventListener('focus', () => {
+        searchResults.style.display = 'block';
+    })
+}
+
+collegeSearch(us_colleges);
+
+// fetch(us_colleges)
+//     .then(response => response.json())
+//     .then(data => {
+//         console.table(data);
+
+//         // const institution_data = JSON.parse(JSON.stringify(data));
+//         const institution_data = data
+
+//         const institutionNames = institution_data.map(institution => institution.name);
+
+//         // console.log(institutionNames)
+
+//         let textToSearch = ""
+
+//         let pattern = textToSearch == "" ? "" : textToSearch+"+";
+
+//         let flags = "gi";
+
+//         let regex = new RegExp(pattern, flags)
+
+//         let institutionSearch = institutionNames.filter(name => name.match(regex))
+        
+//         // console.table(institutionSearch)
+
+
+//         const searchInput = document.getElementById('institution');
+//         const searchResults = document.getElementById('insSearchResults');
+
+//         searchInput.addEventListener('input', () => {
+//         const query = searchInput.value.toLowerCase();
+//         searchResults.style.display = "block";
+//         searchResultsBorders(searchResults.style.display)
+//         searchResults.innerHTML = '';
+
+//         institutionSearch.forEach(item => {
+//             if (item.toLowerCase().includes(query)) {
+//             const li = document.createElement('li');
+//             li.className = "list-group-item";
+//             li.textContent = item;
+//             li.addEventListener('click', () => {
+//                 // Handle the clicked item, e.g., open a new page
+//                 searchInput.value = li.textContent
+//                 searchResults.style.display = "none";
+//                 searchResultsBorders(searchResults.style.display)
+
+//             });
+//             searchResults.appendChild(li);
+//             }
+//         });
+//         });
+
+//         let searchResultsBorders = (display) => {
+//             if(display == 'block'){
+//                 searchResults.style.border = '1px solid rgba(128, 128, 128, 10%)'
+//             } else {
+//                 searchResults.style.border = 'none';
+//             }
+//         }
+
+//         searchInput.addEventListener('blur', () => {
+//             if (!searchResults.matches(':hover')) {
+//                 searchResults.style.display = 'none';
+//             }
+//         })
+
+//         searchInput.addEventListener('focus', () => {
+//             searchResults.style.display = 'block';
+//         })
+
+//     })
+//     .catch(error => {
+//         console.error('Error fetching data:', error);
+//     });
+
+
 //Search for majors
-    fetch('/majors')
+
+fetch('/majors')
     .then(response => response.json())
     .then(data => {
         // console.log(data);

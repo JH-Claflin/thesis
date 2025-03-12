@@ -226,9 +226,6 @@ const groupStackedBarGraph = (xAxis, bars, stacks, dataToParse) => {
 
 
 
-
-
-
 //Grouping Objects that share a property
 const groupByProperty = (arr, property) => {
     const groups = new Map();
@@ -265,24 +262,5 @@ const dbValueFormat = (str) => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 //Data to be sent to the charts
 export const chartInfo = await fetchData();
-
-
-
-
-
-
-
-
-
