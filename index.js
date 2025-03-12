@@ -6,7 +6,6 @@ require('dotenv').config()
 
 
 /**
- * TODO: You Must Make A Graphical User Interface that
  * pulls data from the database and generates data visualization
  * the metrics that should be displayed are:
  * Types of MSIPP Programs, Which Labs, Type of Schools, Majors
