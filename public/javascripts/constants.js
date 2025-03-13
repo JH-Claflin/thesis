@@ -90,7 +90,7 @@ export const NATIONAL_LABS = [
  */
 
 export const MSI_CATEGORIES = [
-    {name: 'Asian American Native American Pacific Islander-Serving Institutions', abbreviation: 'ANNAPISI'},
+    {name: 'Asian American Native American Pacific Islander-Serving Institutions', abbreviation: 'AANAPISI'},
     {name: 'Alaska Native and Native Hawaiian Serving Institutions', abbreviation: 'ANNH'},
     {name: 'Historically Black Colleges & Universities', abbreviation: 'HBCU'},
     {name: 'Hispanic Serving Institutions', abbreviation: 'HSI'},
