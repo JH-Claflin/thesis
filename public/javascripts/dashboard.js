@@ -140,8 +140,10 @@ const drillDownPieChart = (dataToParse, groupBy) => {
         
         let percentage = ((yValue/(totalNumberOfRecords))*100).toFixed(2);
         
+        // console.log(percentage)
+
         if (yValue != 0) {
-            if (percentage >= 0.1){
+            if (percentage > 5){
                 labelAndValue.push({
                     name: labelFormatting(uniqueMajors[i]),
                     y: yValue,
@@ -181,7 +183,6 @@ const groupStackedBarGraph = (xAxis, bars, stacks, dataToParse) => {
     let dataValue = 0;
     let seriesData = []
 
-    //TODO: To get the correct numbers to show on the bar graph, get the number of students that are to the lab based on index of classification
     /**
      * Classification => Stack
      * Name => MSIPP Program

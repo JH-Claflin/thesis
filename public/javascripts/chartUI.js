@@ -416,19 +416,33 @@ const tooltipText = '<b>Additional Information:</b><br>This is some extra text t
                         const name = this.point.name;
                         const percentage = this.percentage.toFixed(1)
                         const series = this.series.name;
-                        
-  
-                        let label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%<br/>`;
+
+                        //!%%%%%%%%%%%%%%%%
+                        let label = `<span style="color: white;"><b>${name}</b></span>`;
+                        // if (name != 'Other' && series != 'Other'){
+                        //     if (percentage < 10) {
+                        //         label = `<span style="color: white;"></span>`
+                        //     } else if(percentage > 10 && percentage <= 20) {
+                        //         label = `<span style="color: white;"><b>${name}</b><br/></span>`
+                        //     }
+                        // }
                         if (name != 'Other' && series != 'Other'){
-                            if (this.percentage < 7) {
-                                label = `<span style="color: white;"><b>${name}</b><br/>`
+                            if (percentage < 5) {
+                                label = ``
+                            } else if (percentage <= 15) {
+                                label = `<span style="color: white;"><b>${name}</b></span>`
+                            } else {
+                                label = `<span style="color: white;"><b>${name}</b></span><br/>${percentage}%<br/>`
                             }
                         }
-  
                         return label;
+  
+                        // return label;
                     },
+
+
                     style: {
-                        fontSize: chartStyle.fontSize.md,
+                        fontSize: chartStyle.fontSize.sm,
                         textOutline: chartStyle.textProperty.textOutline,
                         opacity: 0.7,
                         align: 'center',
